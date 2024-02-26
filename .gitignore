@@ -161,3 +161,5 @@ cython_debug/
 logs/
 *.xlsx
 *.xls
+weights/
+*.h5
