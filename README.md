@@ -24,3 +24,16 @@ Once the above command run successfully, please open browser and visit `localhos
 
 # Predict data and write predicted phases to excel files
 `python evaluate.py`
+
+# Updated steps of the project
+
+## First step
+user is asked to select the training file : ( from the following files) ( down-1, down-5, down-10, down-15, down-20, down-30,down-60)
+## Second step
+training the model with LSTM and extract the highest accuracy
+## Third step
+model is saved and write result in a new excel file(e.g. tr1.excel which has one sheet with two columns-G truth and predictions)
+## Fourth step 
+user is asked to select the testing file : ( form the following files) ( down-1, down-5, down-10, down-15, down-20, down-30,down-60)
+## Last step 
+Print the accuracy with training and testing file name and write the prediction result in a new excel file (e.g. tr1ts5.excel which has one sheet with two columns-G truth and predictions)
