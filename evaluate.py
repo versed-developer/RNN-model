@@ -2,6 +2,7 @@ import os
 
 import pandas as pd
 from tensorflow.keras.models import load_model
+from keras.preprocessing.sequence import pad_sequences
 
 from lstm import load_data, write_results
 
@@ -16,10 +17,14 @@ def evaluate_saved_models():
 
         # Final evaluation of the model using testing.xlsx
         x_test, y_test, index, g_truth = load_data(f'{test_file_name}.xlsx')
-        scores = model.evaluate(x_test, y_test, verbose=0)
+
+        input_shape = model.layers[0].input_shape
+        _, col, _ = input_shape[0]
+        x_test_padded = pad_sequences(x_test, maxlen=col, padding='post', truncating='post')
+        scores = model.evaluate(x_test_padded, y_test, verbose=0)
         print("Accuracy: %.2f%%" % (scores[1] * 100))
 
-        predicted_values = model.predict(x_test)
+        predicted_values = model.predict(x_test_padded)
         write_results(predicted_values, g_truth, index, f'{test_file_name}_result.xlsx')
     else:
         print(f"The file '{model_path}' does not exist.")

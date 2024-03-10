@@ -114,7 +114,7 @@ if __name__ == '__main__':
     model = build_rnn_model()
 
     tensorboard_callback = K.callbacks.TensorBoard(log_dir="./logs")
-    model_checkpoint_callback = ModelCheckpoint(filepath='model_checkpoint.keras')
+    model_checkpoint_callback = ModelCheckpoint(filepath='lstm_model.keras')
     model.fit(x_train, y_train, epochs=256, batch_size=16, callbacks=[tensorboard_callback, model_checkpoint_callback])
 
     # If it's fit to your consideration, save model
